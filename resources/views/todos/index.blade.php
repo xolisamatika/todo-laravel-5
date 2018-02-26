@@ -220,6 +220,29 @@
                                 }
                             });
                         });
+
+                        $('.completed').click(function() {
+                            id = $(this).data('id');
+                            if ($(this).is(':checked')) {
+                                $(this).attr('value', '1');
+                            } else {
+                                $(this).attr('value', '0');
+                            }
+                            $.ajax({
+                                type: 'POST',
+                                url: "{{ URL::route('changeStatus') }}",
+                                data: {
+                                    'id': id
+                                },
+                                success: function(data) {
+                                    if(data.todo.is_complete) {
+                                        $('#row-todo' + id).addClass("success");
+                                    } else {
+                                        $('#row-todo' + id).removeClass("success");
+                                    }
+                                },
+                        });
+            });
                     }
                 }
                 });
