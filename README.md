@@ -37,13 +37,32 @@ Install the project dependecies (Composer)
 ```
 composer install
 ```
+Create your .env file from the .env.example file
+
+```
+cp .env.example .env
+```
+
+Make the following changes on the .env file (I'm using root for username and password, yours could be different).
+
+```
+DB_DATABASE=todoDb
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+
+Generate your application encryption key
+
+```
+php artisan key:generate
+```
 
 ### Get it running
 
-To get it running, simply navigate to the public folder and hit up temp web server on any port of your choosing
+To get it running, simply run the command below.
 
 ```
-cd  public/ && php -S localhost:8008
+php artisan serve
 ```
 
-Now in your browser go to : http://localhost:8008/todos
+Now in your browser go to : http://localhost:8000/todos

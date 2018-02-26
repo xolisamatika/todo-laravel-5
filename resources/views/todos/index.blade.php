@@ -19,30 +19,27 @@
     
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <style>
-      
+
     </style>
 
 </head>
 
 <body>
     <div class="container">
-    @if ($todos->count())
-        @if (count($todos) === 1)
-        <h2>I have one todo!</h2> 
-        @elseif (count($todos) > 1)
-            <h2>I have multiple todos!</h2>
-        @endif
-        <div class="form-inline">
-        <div class="form-group">
-            <label for="newTodo">Title:</label>
-            <input type="text" name="newTodo" id="title-new-todo"   class="form-control" required>
+    
+        <h1>Todo App</h1>
+        <div class="form-inline well">
+                <div class="form-group">
+                    <label for="newTodo">Title:</label>
+                    <input type="text" name="newTodo" id="title-new-todo"   class="form-control" required>
+                </div>
+                
+                    <a class="btn btn-success add">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Save
+                </a>
         </div>
-        
-            <a class="btn btn-success add">
-                <span class="glyphicon glyphicon-plus"></span>
-                Save
-            </a>
-        </div>
+
         <br>
         <table class="table table-striped table-bordered" id="todos-table">
             <thead>
@@ -81,9 +78,6 @@
             @endforeach
             </tbody>
         </table>
-    @else
-    <h2>I don't have any todos!</h2>
-    @endif
 </div>
 
 
@@ -179,7 +173,7 @@
                                 +"</tr>";
                             
                         $('#todos-table').append(newRow);
-                        $('#title-new-todo').text('');
+                        $('#title-new-todo').val('');
                         $('#update-todo' + todo.id).hide();
                         $('#edit-todo' + todo.id).click(function() {
                             id = $(this).data('id');
