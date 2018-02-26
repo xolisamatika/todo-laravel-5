@@ -51,7 +51,12 @@
             </thead>
             <tbody>
             @foreach($todos as $todo)
-                <tr scope="row" id="row-todo{{$todo->id}}">
+                @if ($todo->is_complete)
+                    <tr scope="row" id="row-todo{{$todo->id}}" class="success">
+                @else
+                    <tr scope="row" id="row-todo{{$todo->id}}">
+                @endif 
+
                     <td>
                         <p contenteditable="false" name="todo{{$todo->id}}" id="title-todo{{$todo->id}}"> {{$todo->title}} </p>
                     </td>
@@ -105,6 +110,11 @@
                         'id': id
                     },
                     success: function(data) {
+                        if(data.todo.is_complete) {
+                            $('#row-todo' + id).addClass("success");
+                        } else {
+                            $('#row-todo' + id).removeClass("success");
+                        }
                     },
                 });
             });
@@ -135,11 +145,6 @@
                     $('.errorContent').addClass('hidden');
 
                     if ((data.errors)) {
-                        setTimeout(function () {
-                            $('#addModal').modal('show');
-                            toastr.error('Validation error!', 'Error Alert', {timeOut: 5000});
-                        }, 500);
-
                         if (data.errors.title) {
                             $('.errorTitle').removeClass('hidden');
                             $('.errorTitle').text(data.errors.title);
@@ -197,6 +202,11 @@
                                 },
                                 success: function(data) {
                                     $('#title-todo' + id).attr('contenteditable', false);
+                                    if(data.todo.is_complete) {
+                                        $('#row-todo' + id).addClass("success");
+                                    } else {
+                                        $('#row-todo' + id).removeClass("success");
+                                    }
                                 }
                             });
                         });
@@ -231,6 +241,11 @@
                     },
                     success: function(data) {
                         $('#title-todo' + id).attr('contenteditable', false);
+                        if(data.todo.is_complete) {
+                            $('#row-todo' + id).addClass("success");
+                        } else {
+                            $('#row-todo' + id).removeClass("success");
+                        }
                     }
                 });
             });
