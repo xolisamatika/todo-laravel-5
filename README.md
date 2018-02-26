@@ -32,12 +32,6 @@ Enter the project folder and run the sql script to the install database. PS: rep
 cd todo-laravel-5/ && mysql -uroot -proot < ./todoDb.sql
 ```
 
-Install the project dependecies (Bower)
-
-```
-bower install
-```
-
 Install the project dependecies (Composer)
 
 ```
