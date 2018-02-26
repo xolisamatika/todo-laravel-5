@@ -43,7 +43,7 @@ composer install
 To get it running, simply navigate to the public folder and hit up temp web server on any port of your choosing
 
 ```
-php -S localhost:8008
+cd  public/ && php -S localhost:8008
 ```
 
 Now in your browser go to : http://localhost:8008/todos
